@@ -48,42 +48,6 @@
         android:layout_below="@+id/tv_gap"
         android:layout_marginTop="@dimen/dp_5">
 
-        <com.rikkathewrold.rikkamusic.widget.MineItemView
-            android:id="@+id/local_music"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_45"
-            app:icon="@drawable/ic_music"
-            app:name="@string/local_music"
-            app:show_gap="true" />
-
-        <com.rikkathewrold.rikkamusic.widget.MineItemView
-            android:id="@+id/recent_play"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_45"
-            android:layout_below="@id/local_music"
-            android:visibility="gone"
-            app:icon="@drawable/ic_recent_play"
-            app:name="@string/recent_play"
-            app:show_gap="true" />
-
-        <com.rikkathewrold.rikkamusic.widget.MineItemView
-            android:id="@+id/my_radio"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_45"
-            android:layout_below="@id/recent_play"
-            app:icon="@drawable/ic_my_radio"
-            app:name="@string/my_radio"
-            app:show_gap="true"
-            android:visibility="gone"/>
-
-        <com.rikkathewrold.rikkamusic.widget.MineItemView
-            android:id="@+id/my_collection"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_45"
-            android:layout_below="@id/my_radio"
-            app:icon="@drawable/ic_my_collection"
-            app:name="@string/my_collection"
-            app:show_gap="false" />
     </RelativeLayout>
 
     <RelativeLayout

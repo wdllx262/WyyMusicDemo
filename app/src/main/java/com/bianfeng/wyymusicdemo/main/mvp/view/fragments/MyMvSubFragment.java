@@ -1,10 +1,12 @@
 package com.bianfeng.wyymusicdemo.main.mvp.view.fragments;
 
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bianfeng.wyymusicdemo.R;
 import com.bianfeng.wyymusicdemo.base.BaseFragment;
 import com.bianfeng.wyymusicdemo.bean.AlbumSublistBean;
 import com.bianfeng.wyymusicdemo.bean.ArtistSublistBean;
@@ -15,8 +17,15 @@ import com.bianfeng.wyymusicdemo.main.mvp.contract.MineContract;
 import com.bianfeng.wyymusicdemo.main.mvp.view.presenter.MinePresenter;
 import com.bianfeng.wyymusicdemo.persional.bean.UserPlaylistBean;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MyMvSubFragment   extends BaseFragment<MinePresenter> implements MineContract.View {
     private static final String TAG = "MyMvSubFragment";
+    @BindView(R.id.rv)
+    RecyclerView rvMv;
+
+
 
     public MyMvSubFragment() {
         setFragmentTitle("视频");
@@ -25,7 +34,9 @@ public class MyMvSubFragment   extends BaseFragment<MinePresenter> implements Mi
 
     @Override
     protected View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return null;
+        View rootView = inflater.inflate(R.layout.fragment_recyclerview, container, false);
+        ButterKnife.bind(this, rootView);
+        return rootView;
     }
 
     @Override

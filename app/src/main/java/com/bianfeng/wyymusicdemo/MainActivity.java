@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         int originFlag = this.getWindow().getDecorView().getSystemUiVisibility();
         this.getWindow().getDecorView().setSystemUiVisibility(originFlag | View
                 .SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
 
 //        ImageView imageView=findViewById(R.id.ic_nav);
         ButterKnife.bind(this);
