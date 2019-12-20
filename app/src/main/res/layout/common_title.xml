@@ -58,7 +58,7 @@
 
     </RelativeLayout>
 
-    <com.rikkathewrold.rikkamusic.widget.SearchEditText
+    <com.bianfeng.wyymusicdemo.widget.SearchEditText
         android:id="@+id/et_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

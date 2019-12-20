@@ -62,7 +62,7 @@
                 android:layout_centerInParent="true"
                 android:src="@drawable/shape_record" />
 
-            <com.rikkathewrold.rikkamusic.widget.LyricView
+            <com.bianfeng.wyymusicdemo.widget.LyricView
                 android:id="@+id/lrc"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

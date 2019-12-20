@@ -11,6 +11,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bianfeng.wyymusicdemo.R;
+import com.bianfeng.wyymusicdemo.song.mvp.view.SongActivity;
+import com.lzx.starrysky.model.SongInfo;
 
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -25,6 +27,7 @@ public class BottomSongPlayBar extends RelativeLayout {
     private ImageView ivPlay,ivController;
     private TextView tvSongName,tvSongSinger;
     private LinearLayout llSongInfo;
+    private SongInfo currentSongInfo;
 
     public BottomSongPlayBar(Context context) {this(context,null);}
 
@@ -52,7 +55,9 @@ public class BottomSongPlayBar extends RelativeLayout {
     private void initListener()
     {
         ivCover.setOnClickListener(v -> {
-            //头像监听
+            Intent intent = new Intent(mContext, SongActivity.class);
+            intent.putExtra(SongActivity.SONG_INFO, currentSongInfo);
+            mContext.startActivity(intent);
         });
         llSongInfo.setOnClickListener(v -> {
 
