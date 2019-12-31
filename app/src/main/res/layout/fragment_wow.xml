@@ -6,19 +6,17 @@
     android:layout_height="match_parent"
     android:background="#ffffff">
 
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
 
         <FrameLayout
             android:id="@+id/fl_banner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_95"
-                android:background="@color/colorPrimary" />
 
             <com.youth.banner.Banner
                 android:id="@+id/wow_banner"
@@ -33,6 +31,7 @@
                 app:indicator_height="@dimen/dp_7"
                 app:indicator_margin="@dimen/dp_4"
                 app:indicator_width="@dimen/dp_7" />
+
         </FrameLayout>
 
         <LinearLayout

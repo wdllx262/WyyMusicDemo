@@ -14,7 +14,7 @@ import com.bianfeng.wyymusicdemo.bean.MvSublistBean;
 import com.bianfeng.wyymusicdemo.bean.MyFmBean;
 import com.bianfeng.wyymusicdemo.bean.PlayModeIntelligenceBean;
 import com.bianfeng.wyymusicdemo.main.mvp.contract.MineContract;
-import com.bianfeng.wyymusicdemo.main.mvp.view.presenter.MinePresenter;
+import com.bianfeng.wyymusicdemo.main.mvp.presenter.MinePresenter;
 import com.bianfeng.wyymusicdemo.persional.bean.UserPlaylistBean;
 
 import butterknife.BindView;

@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_event"
+    <android.support.design.widget.TabLayout
+        android:layout_marginLeft="@dimen/dp_40"
+        android:layout_marginRight="@dimen/dp_40"
+        android:id="@+id/cloudVillage_tabs"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="39dp"
+        android:tag="tab_indicator_accent_color,bg_primary_color"
+        app:tabSelectedTextColor="@color/colorPrimary"
+          />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/cloudVillage_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/cloudVillage_tabs"
+        android:overScrollMode="always" />
+
 </RelativeLayout>

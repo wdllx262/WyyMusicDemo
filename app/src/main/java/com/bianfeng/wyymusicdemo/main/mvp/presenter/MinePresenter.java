@@ -1,4 +1,4 @@
-package com.bianfeng.wyymusicdemo.main.mvp.view.presenter;
+package com.bianfeng.wyymusicdemo.main.mvp.presenter;
 
 import com.bianfeng.wyymusicdemo.main.mvp.contract.MineContract;
 

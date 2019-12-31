@@ -5,11 +5,11 @@
     android:layout_height="match_parent"
     android:background="#ffffff">
 
-    <RelativeLayout
+    <com.bianfeng.wyymusicdemo.widget.ColorRelativeLayout
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_55"
-        android:background="@color/colorPrimary">
+        android:background="?attr/colorPrimary">
 
         <RelativeLayout
             android:id="@+id/rl_title"
@@ -46,7 +46,7 @@
                 app:srcCompat="@drawable/shape_search"
                 android:layout_centerVertical="true"/>
         </RelativeLayout>
-    </RelativeLayout>
+    </com.bianfeng.wyymusicdemo.widget.ColorRelativeLayout>
     <com.bianfeng.wyymusicdemo.widget.BottomSongPlayBar
         android:id="@+id/bottom_controller"
         android:layout_width="match_parent"
