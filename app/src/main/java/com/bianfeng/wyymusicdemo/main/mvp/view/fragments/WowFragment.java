@@ -28,6 +28,8 @@ import com.bianfeng.wyymusicdemo.util.BannerGlideImageLoader;
 import com.bianfeng.wyymusicdemo.util.ClickUtil;
 import com.bianfeng.wyymusicdemo.util.LogUtil;
 import com.hjq.toast.ToastUtils;
+import com.lzx.musiclibrary.aidl.model.SongInfo;
+import com.lzx.musiclibrary.manager.MusicManager;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 
@@ -94,6 +96,8 @@ public class WowFragment   extends BaseFragment<WowPresenter> implements WowCont
         banner.setImages(bannerImageList).start();
         banner.setOnBannerListener(position -> {
             ToastUtils.show("你以为轮播图可以点，但是我也找不到入口哒！");
+
+            List<SongInfo> songInfos =new ArrayList<>();
         });
 //        recommendPlayListAdapter = new PlayListAdapter(getContext());
 //        recommendPlayListAdapter.setType(1);

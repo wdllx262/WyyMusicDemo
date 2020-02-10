@@ -14,6 +14,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -32,7 +33,11 @@ import com.bianfeng.wyymusicdemo.main.mvp.view.fragments.WowFragment;
 import com.bianfeng.wyymusicdemo.util.ClickUtil;
 import com.bianfeng.wyymusicdemo.util.ColorUiUtil;
 import com.bianfeng.wyymusicdemo.util.SharedPreferencesUtils;
+import com.bianfeng.wyymusicdemo.util.ThemeUtil;
 import com.hjq.toast.ToastUtils;
+import com.lzx.musiclibrary.aidl.model.SongInfo;
+import com.lzx.musiclibrary.manager.MusicManager;
+import com.lzx.musiclibrary.utils.BaseUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -100,6 +105,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initTabListener();
         viewPager.setAdapter(mPagerAdapter);
         tab.setupWithViewPager(viewPager);
+
     }
 
     @Override
@@ -110,7 +116,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         switch (v.getId()) {
             case R.id.tv_dayornight_mode:
-               switchThemeType();
+               ThemeUtil.switchThemeType(this);
+                int i=0;
+                //播放一首歌曲
+                List<SongInfo> songInfos =new ArrayList<>();
+                SongInfo songInfo =new  SongInfo();
+                songInfo.setSongId("0");
+                songInfo.setSongName("音乐1");
+                songInfo.setSongUrl("http://audio04.dmhmusic.com/71_53_T10052953671_128_4_1_0_sdk-cpm/cn/0209/M00/E1/B8/ChR47F33J_yAHE_JACrgf2qqnyQ634.mp3?xcode=6f40cd410c87d9a55b6e32b3a797d141a3161ea");
+                songInfo.setArtist("11");
+                songInfo.setDuration(10000);
+                songInfos.add(songInfo);
+                SongInfo songInfo1=new SongInfo();
+                songInfo1.setSongId("1");
+                songInfo1.setSongName("音乐1");
+                songInfo1.setSongUrl("http://audio04.dmhmusic.com/71_53_T10052953671_128_4_1_0_sdk-cpm/cn/0209/M00/E1/B8/ChR47F33J_yAHE_JACrgf2qqnyQ634.mp3?xcode=6f40cd410c87d9a55b6e32b3a797d141a3161ea");
+                songInfo1.setArtist("11");
+                songInfo1.setDuration(10000);
+                songInfos.add(songInfo1);
+                MusicManager.get().playMusic(songInfos, 0,true);
+                if (MusicManager.isPlaying()) {
+                    Log.e("1111111111111","在播放了！！！！");
+                }
+                else{
+                    Log.e("1111111111111","没播放！！！！");
+                    //MusicManager.get().resumeMusic();
+                }
                 break;
         }
     }
@@ -179,53 +210,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private void switchThemeType()
-    {
-        SharedPreferencesUtils.getInstance(mContext).put("themeType",!useTheme);
-        useTheme = SharedPreferencesUtils.getInstance(mContext).read("themeType");
-        if (useTheme)
-        {
-            setTheme(R.style.AppTheme);
-        }else {
-            setTheme(R.style.NightTheme);
-        }
-        final View rootView = getWindow().getDecorView();
-        if(Build.VERSION.SDK_INT < 14) {
-            ColorUiUtil.changeTheme(rootView, getTheme());
 
-        } else {
-            rootView.setDrawingCacheEnabled(true);
-            rootView.buildDrawingCache(true);
-            final Bitmap localBitmap = Bitmap.createBitmap(rootView.getDrawingCache());
-            rootView.setDrawingCacheEnabled(false);
-            if (null != localBitmap && rootView instanceof ViewGroup) {
-                final View localView2 = new View(getApplicationContext());
-                localView2.setBackgroundDrawable(new BitmapDrawable(getResources(), localBitmap));
-                ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-                ((ViewGroup) rootView).addView(localView2, params);
-                localView2.animate().alpha(0).setDuration(400).setListener(new Animator.AnimatorListener() {
-                    @Override
-                    public void onAnimationStart(Animator animation) {
-                        ColorUiUtil.changeTheme(rootView, getTheme());
-                    }
-
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        ((ViewGroup) rootView).removeView(localView2);
-                        localBitmap.recycle();
-                    }
-
-                    @Override
-                    public void onAnimationCancel(Animator animation) {
-
-                    }
-
-                    @Override
-                    public void onAnimationRepeat(Animator animation) {
-
-                    }
-                }).start();
-            }
-        }
-    }
 }
