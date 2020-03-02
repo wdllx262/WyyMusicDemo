@@ -13,7 +13,8 @@ import android.widget.TextView;
 import com.bianfeng.wyymusicdemo.R;
 import com.bianfeng.wyymusicdemo.base.BaseAdapter;
 import com.bianfeng.wyymusicdemo.util.LogUtil;
-import com.lzx.starrysky.model.SongInfo;
+import com.lzx.musiclibrary.aidl.model.SongInfo;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;

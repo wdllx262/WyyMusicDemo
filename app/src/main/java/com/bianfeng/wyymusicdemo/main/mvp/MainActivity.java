@@ -35,9 +35,9 @@ import com.bianfeng.wyymusicdemo.util.ColorUiUtil;
 import com.bianfeng.wyymusicdemo.util.SharedPreferencesUtils;
 import com.bianfeng.wyymusicdemo.util.ThemeUtil;
 import com.hjq.toast.ToastUtils;
+import com.lzx.musiclibrary.aidl.listener.OnPlayerEventListener;
 import com.lzx.musiclibrary.aidl.model.SongInfo;
 import com.lzx.musiclibrary.manager.MusicManager;
-import com.lzx.musiclibrary.utils.BaseUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -117,31 +117,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.tv_dayornight_mode:
                ThemeUtil.switchThemeType(this);
-                int i=0;
-                //播放一首歌曲
-                List<SongInfo> songInfos =new ArrayList<>();
-                SongInfo songInfo =new  SongInfo();
-                songInfo.setSongId("0");
-                songInfo.setSongName("音乐1");
-                songInfo.setSongUrl("http://audio04.dmhmusic.com/71_53_T10052953671_128_4_1_0_sdk-cpm/cn/0209/M00/E1/B8/ChR47F33J_yAHE_JACrgf2qqnyQ634.mp3?xcode=6f40cd410c87d9a55b6e32b3a797d141a3161ea");
-                songInfo.setArtist("11");
-                songInfo.setDuration(10000);
-                songInfos.add(songInfo);
-                SongInfo songInfo1=new SongInfo();
-                songInfo1.setSongId("1");
-                songInfo1.setSongName("音乐1");
-                songInfo1.setSongUrl("http://audio04.dmhmusic.com/71_53_T10052953671_128_4_1_0_sdk-cpm/cn/0209/M00/E1/B8/ChR47F33J_yAHE_JACrgf2qqnyQ634.mp3?xcode=6f40cd410c87d9a55b6e32b3a797d141a3161ea");
-                songInfo1.setArtist("11");
-                songInfo1.setDuration(10000);
-                songInfos.add(songInfo1);
-                MusicManager.get().playMusic(songInfos, 0,true);
-                if (MusicManager.isPlaying()) {
-                    Log.e("1111111111111","在播放了！！！！");
-                }
-                else{
-                    Log.e("1111111111111","没播放！！！！");
-                    //MusicManager.get().resumeMusic();
-                }
+                //播放asset文件下文件示例
+//                com.lzx.musiclibrary.aidl.model.SongInfo msongInfo = new com.lzx.musiclibrary.aidl.model.SongInfo();
+//                msongInfo.setSongId("111");
+//                msongInfo.setSongUrl("file:///android_asset/music.mp3");
+//                MusicManager.get().playMusicByInfo(msongInfo);
+
+
                 break;
         }
     }
@@ -205,10 +187,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             ToastUtils.show(R.string.press_exit_again);
             firstTime = System.currentTimeMillis();
         } else {
+            MusicManager.get().pauseMusic();
+            SongInfo songInfo= MusicManager.get().getCurrPlayingMusic();
+            long Progress=MusicManager.get().getProgress();
+            SharedPreferencesUtils.getInstance(this).putSongInfo(songInfo,Progress,MusicManager.get().getCurrPlayingIndex());
+            Log.e("11111111","退出了");
             finish();// 销毁当前activity
             System.exit(0);// 完全退出应用
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 
 }

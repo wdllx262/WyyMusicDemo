@@ -22,8 +22,6 @@ public class App extends Application {
         ToastUtils.init(this);
         if (!BaseUtil.getCurProcessName(this).contains(":musicLibrary")) {
             MusicManager.get().setContext(this).init();
-            MusicManager.get().setAutoPlayNext(true);
-          //  MusicManager.get().bindService();
         }
 //        MusicManager.initMusicManager(this);
 //        if (BaseUtil.getCurProcessName(this).contains("com.bianfeng.wyymusicdemo")) {

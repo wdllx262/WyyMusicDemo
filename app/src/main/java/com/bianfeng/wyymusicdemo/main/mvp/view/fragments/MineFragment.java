@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ import com.bianfeng.wyymusicdemo.persional.bean.UserPlaylistBean;
 import com.bianfeng.wyymusicdemo.util.ThemeUtil;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.lzx.musiclibrary.aidl.listener.OnPlayerEventListener;
 import com.lzx.musiclibrary.aidl.model.SongInfo;
 import com.lzx.musiclibrary.manager.MusicManager;
 
@@ -59,6 +61,7 @@ public class MineFragment extends BaseFragment<MinePresenter> implements MineCon
 
     @Override
     protected void initData() {
+        //playOneSong();
     }
 
     @Override
@@ -155,5 +158,26 @@ public class MineFragment extends BaseFragment<MinePresenter> implements MineCon
             ThemeUtil.switchThemeType(getActivity());
             flag = 1;
         }
+    }
+    public void playOneSong()
+    {
+        //播放一首歌曲
+        List<SongInfo> songInfos = new ArrayList<>();
+        SongInfo songInfo = new SongInfo();
+        songInfo.setSongId("0");
+        songInfo.setSongName("音乐1");
+        songInfo.setSongUrl("http://audio04.dmhmusic.com/71_53_T10052305999_128_4_1_0_sdk-cpm/cn/0311/M00/C5/E1/ChAKDF2paMGAbb9FADw1Kf2Dc7Y029.mp3?xcode=57de1e849f8a78065f4dde57e38046bf02e26ac");
+        songInfo.setArtist("11");
+        songInfo.setDuration(10000);
+        songInfos.add(songInfo);
+        SongInfo songInfo1 = new SongInfo();
+        songInfo1.setSongId("1");
+        songInfo1.setSongName("音乐1");
+        songInfo1.setSongUrl("http://audio04.dmhmusic.com/71_53_T10052305999_128_4_1_0_sdk-cpm/cn/0311/M00/C5/E1/ChAKDF2paMGAbb9FADw1Kf2Dc7Y029.mp3?xcode=57de1e849f8a78065f4dde57e38046bf02e26ac");
+        songInfo1.setArtist("11");
+        songInfo1.setDuration(10000);
+        songInfos.add(songInfo1);
+        Log.e("11111111","播放一首歌曲");
+        MusicManager.get().playMusic(songInfos, 0, true);
     }
 }

@@ -58,8 +58,7 @@ dependencies {
     api 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
     api 'jp.wasabeef:glide-transformations:4.0.1'
 
-    // 音视频请求框架:StarrySkyJava
-    api 'com.lzx:StarrySkyJava:2.1.9'
+    // 音视频请求框架:MusicLibrary
     api 'com.github.lizixian18:MusicLibrary:v1.3.2'
     // EventBus
     api 'org.greenrobot:eventbus:3.1.1'
@@ -71,4 +70,6 @@ dependencies {
     api 'com.gyf.immersionbar:immersionbar:3.0.0'
     implementation'com.facebook.fresco:fresco:1.0.0'
     implementation 'com.android.support:support-media-compat:27.1.1'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
+
 }

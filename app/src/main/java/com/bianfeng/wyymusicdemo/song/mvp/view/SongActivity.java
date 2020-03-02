@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.AppCompatSeekBar;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
@@ -36,9 +37,9 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
 import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.toast.ToastUtils;
-import com.lzx.starrysky.manager.MusicManager;
-import com.lzx.starrysky.model.SongInfo;
-import com.lzx.starrysky.utils.TimerTaskManager;
+import com.lzx.musiclibrary.aidl.model.SongInfo;
+import com.lzx.musiclibrary.manager.MusicManager;
+import com.lzx.musiclibrary.manager.TimerTaskManager;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -95,7 +96,6 @@ public class SongActivity extends BaseActivity<SongPresenter> implements SongCon
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMusicStartEvent(MusicStartEvent event) {
         LogUtil.d(TAG, "onMusicStartEvent");
-        SongInfo songInfo = event.getSongInfo();
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -112,6 +112,7 @@ public class SongActivity extends BaseActivity<SongPresenter> implements SongCon
                 .transparentBar()
                 .statusBarDarkFont(false)
                 .init();
+
     }
 
     @Override
@@ -130,7 +131,6 @@ public class SongActivity extends BaseActivity<SongPresenter> implements SongCon
         LogUtil.d(TAG, "initData");
         getIntentData();
         setBackBtn(getString(R.string.colorWhite));
-
     }
 
 
@@ -146,7 +146,7 @@ public class SongActivity extends BaseActivity<SongPresenter> implements SongCon
 
 
     private void checkMusicPlaying() {
-        mTimerTask.startToUpdateProgress();
+
     }
 
 
@@ -214,6 +214,26 @@ public class SongActivity extends BaseActivity<SongPresenter> implements SongCon
             case R.id.iv_download:
                 ToastUtils.show("Sorry啊，歌都不是我的，不能下载的");
                 break;
+            case R.id.iv_pre:
+                //上一首
+                MusicManager.get().playPre();
+                break;
+            case R.id.iv_next:
+                //下一首
+                MusicManager.get().playNext();
+                break;
+            case R.id.iv_play:
+                //暂停/播放
+                if ( MusicManager.isPlaying())
+                {
+                    ivPlay.setImageResource(R.drawable.shape_play_white);
+                    MusicManager.get().pauseMusic();
+                }
+                else {
+                    ivPlay.setImageResource(R.drawable.shape_stop_white);
+                    MusicManager.get().resumeMusic();
+                }
+                break;
 
         }
     }
@@ -227,7 +247,7 @@ public class SongActivity extends BaseActivity<SongPresenter> implements SongCon
     protected void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
-        mTimerTask.removeUpdateProgressTask();
+
         if (rotateAnimator != null) {
             if (rotateAnimator.isRunning()) {
                 rotateAnimator.cancel();
@@ -240,6 +260,21 @@ public class SongActivity extends BaseActivity<SongPresenter> implements SongCon
             }
             alphaAnimator = null;
         }
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ivPlay=findViewById(R.id.iv_play);
+        if ( MusicManager.isPlaying())
+        {
+            ivPlay.setImageResource(R.drawable.shape_play_white);
+        }
+        else {
+            ivPlay.setImageResource(R.drawable.shape_stop_white);
+        }
+
     }
 
     @SuppressLint("HandlerLeak")
@@ -360,4 +395,5 @@ public class SongActivity extends BaseActivity<SongPresenter> implements SongCon
     public void onGetPlaylistCommentFail(String e) {
 
     }
+
 }

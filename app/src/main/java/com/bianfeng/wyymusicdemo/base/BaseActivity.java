@@ -13,8 +13,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bianfeng.wyymusicdemo.R;
+import com.bianfeng.wyymusicdemo.util.SharedPreferencesUtils;
 import com.bianfeng.wyymusicdemo.widget.LoadingDialog;
-import com.lzx.starrysky.model.SongInfo;
+import com.lzx.musiclibrary.aidl.model.SongInfo;
+import com.lzx.musiclibrary.manager.MusicManager;
 
 public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG="BaseActivity";
@@ -26,7 +28,6 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     protected LoadingDialog mDialog;
 
     public Context mContext;
-    private SongInfo bottomSongInfo;
 
 
 
@@ -42,6 +43,8 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
         onCreateView(savedInstanceState);
         initModule();
         initData();
+
+
     }
 
     @Override
@@ -50,18 +53,23 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
+    protected void onPause() {
+        super.onPause();
     }
 
     @Override
-    protected void onDestroy() {
-        System.gc();
-        if (mPresenter != null) {
-            mPresenter = null;
+        protected void onStart() {
+            super.onStart();
         }
+
+        @Override
+        protected void onDestroy() {
+            System.gc();
+            if (mPresenter != null) {
+                mPresenter = null;
+            }
 //        MediaSessionConnection.getInstance().disconnect();
-        super.onDestroy();
+            super.onDestroy();
     }
 
     public void createDialog() {
