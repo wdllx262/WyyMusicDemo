@@ -269,10 +269,10 @@ public class SongActivity extends BaseActivity<SongPresenter> implements SongCon
         ivPlay=findViewById(R.id.iv_play);
         if ( MusicManager.isPlaying())
         {
-            ivPlay.setImageResource(R.drawable.shape_play_white);
+            ivPlay.setImageResource(R.drawable.shape_stop_white);
         }
         else {
-            ivPlay.setImageResource(R.drawable.shape_stop_white);
+            ivPlay.setImageResource(R.drawable.shape_play_white);
         }
 
     }

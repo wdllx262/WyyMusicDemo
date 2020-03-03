@@ -34,6 +34,7 @@ import com.bianfeng.wyymusicdemo.util.ClickUtil;
 import com.bianfeng.wyymusicdemo.util.ColorUiUtil;
 import com.bianfeng.wyymusicdemo.util.SharedPreferencesUtils;
 import com.bianfeng.wyymusicdemo.util.ThemeUtil;
+import com.bianfeng.wyymusicdemo.widget.BottomSongPlayBar;
 import com.hjq.toast.ToastUtils;
 import com.lzx.musiclibrary.aidl.listener.OnPlayerEventListener;
 import com.lzx.musiclibrary.aidl.model.SongInfo;
@@ -175,6 +176,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        BottomSongPlayBar bottomSongPlayBar=findViewById(R.id.bottom_controller);
+        bottomSongPlayBar.switchPlay();
     }
 
     /**

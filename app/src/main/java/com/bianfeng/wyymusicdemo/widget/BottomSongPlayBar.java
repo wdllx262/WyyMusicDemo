@@ -184,6 +184,18 @@ public class BottomSongPlayBar extends RelativeLayout {
         Log.e("1111111","获取歌曲成功");
     }
 
+    public void switchPlay()
+    {
+        if ( MusicManager.isPlaying())
+        {
+            ivPlay.setImageResource(R.drawable.shape_stop);
+        }
+        else {
+            ivPlay.setImageResource(R.drawable.shape_play);
+        }
+    }
+
+
 
 
 }
